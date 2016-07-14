@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>우편번호 검색</title>
+
+<script>
+
+//새창에서 선택한 현재의 우편번호 텍스트를 부모 윈도우의 우편번호 입력란에 채워넣는다!+주소
+
+function setPost(zip, addr){
+	
+	//zip으로 넘어온 데이터가 아직 분리되어 있지 않으므로 분리시켜서 opener 윈도우에 알맞게 넣어주자!!
+	var arr=zip.split("-"); // arr[0]="123" , arr=[1]="45"
+
+	opener.document.form1.zip1.value=arr[0];
+	opener.document.form1.zip2.value=arr[1];
+	opener.document.form1.addr1.value=addr;
+	window.close();// 현재 창 닫기!!
+	opener.document.form1.addr2.focus();
+
+}
+
+</script>
+</head>
+<body bgcolor=#ecf1ff>
+<table width="100%" border="1px">
+	<tr>
+		<td colspan="2">
+			<input type="text">
+			<img src="/images/bt_search.png" width=15px height=15px>
+		</td>
+	</tr>
+	<tr>
+		<td>우편번호</td>
+		<td>주소</td>
+	</tr>
+	<tr onMouseOver="this.style.background='#f4e6ff'" onMouseOut="this.style.background=''">
+		<td><a href="javascript:setPost('123-45','경기도 용인시 기흥구 중동')">123-45</a></td>
+		<!-- href안에 javascript를 호출하면 프로그램이 된다.-->
+		<td>경기도 용인시 기흥구 중동</td>
+	</tr>
+	<tr onMouseOver="this.style.background='#f4e6ff'" onMouseOut="this.style.background=''">
+		<td><a href="">234-56</a></td>
+		<td>경기도 용인시 기흥구 동백동</td>
+	</tr>
+	<tr onMouseOver="this.style.background='#f4e6ff'" onMouseOut="this.style.background=''">
+		<td><a href="">345-67</a></td>
+		<td>경기도 용인시 기흥구 언남동</td>
+	</tr>
+	<tr onMouseOver="this.style.background='#f4e6ff'" onMouseOut="this.style.background=''">
+		<td><a href="">456-78</a></td>
+		<td>경기도 용인시 기흥구 상갈동</td>
+	</tr>
+	<tr onMouseOver="this.style.background='#f4e6ff'" onMouseOut="this.style.background=''">
+		<td><a href="">567-89</a></td>
+		<td>경기도 용인시 기흥구 하갈동</td>
+	</tr>
+
+</table>
+</body>
+</html>

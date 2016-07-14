@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>겔러그</title>
+<style>
+body{
+	margin:0;
+}
+#stage{
+	width:1000px;
+	height:800px;
+	background-Image:url("../images/gallerxy/bg.png")
+}
+</style>
+<script src="../lib/ship.js"></script>
+<script src="../lib/Enemy.js"></script>
+<script>
+var stage;
+var bgY=0;
+var Ship;
+
+//배열을 2개로 선언!!
+
+var kingArray=new Array(10); // 대왕
+var enemyArray=new Array(60); // 쫄병
+
+var enemyImg=[
+	"../images/gallerxy/blue_king.png",
+	"../images/gallerxy/green_king.png",
+	"../images/gallerxy/enermy1.png",
+	"../images/gallerxy/enermy2.png"
+	];
+
+window.addEventListener("load",function(){
+	stage=document.getElementById("stage");
+	bgEffect();
+
+	// 주인공 등장
+	Ship=new ship(stage,50,50,475,730);
+	Ship.init();
+
+	// 적군 등장
+
+	var redY=0;
+	var redCount=0;
+	var enemyIndex=0;
+
+	for(var i=0;i<10;i++){
+	
+	}
+
+});
+
+//키보드 입력처리!!
+window.addEventListener("keydown",function(){
+	var key=event.keyCode; // 입력한 아스키 코드 값!!
+	switch(key){//소괄호에 조건 판단 대상이 되는 데이터!!
+		case 37:Ship.velX=-3;break;
+		case 39:Ship.velX=3;break;
+		case 32:break;
+	
+	}
+window.addEventListener("keyup",function(){
+	Ship.velX=0;
+});
+	
+});
+
+//배경 이미지 흘러가기 효과!!
+function bgEffect(){
+	bgY+=5;
+	stage.style.backgroundPosition="0px "+bgY+"px";
+	
+	setTimeout("bgEffect()",100);
+
+}
+
+</script>
+</head>
+<body>
+<div id="stage"></div>
+</body>
+</html>

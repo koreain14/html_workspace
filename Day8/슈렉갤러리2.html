@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>슈렉갤러리</title>
+<style>
+#box{
+	width: 3500px;
+	height: 340px;
+	position: relative;/*바깥쪽 테두리를 기준으로 하는 것이 상대위치*/
+	left:0px;
+	top:0px;
+}
+#mask{
+	width:500px;
+	height: 340px;
+	overflow:hidden;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:200px;
+}
+
+#wrapper{
+	width:500px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:200px;
+	Text-align: center;
+	font-size: 12pt;
+}
+a{
+	text-decoration: none; /*밑 줄 없애기*/
+	color:#000000 /*색깔*/
+}
+/*a태그에 마우스 올려놓으면*/
+a:hover{
+	color: #00cc00;
+}
+
+</style>
+<script>
+var arr = [
+"../images/shurek/img0.jpg",
+"../images/shurek/img1.jpg",
+"../images/shurek/img2.jpg",
+"../images/shurek/img3.jpg",
+"../images/shurek/img4.jpg",
+"../images/shurek/img5.jpg",
+"../images/shurek/img6.jpg"];
+var box;
+var a=0.9; // 부드러운정도
+var targetX=0; //박스가 도달할 목표지점!
+
+function init(){
+	box=document.getElementById("box");
+	for(var i=0;i<arr.length;i++){
+		var img=document.createElement("img");
+		img.src=arr[i];
+		box.appendChild(img);
+	}
+	move();
+}
+
+function showImg(pos){
+	targetX=-pos*500;
+}
+
+function move(){
+	//box.style.left=(-pos*500)+"px";
+	//나의 이미지위치 = (타겟-a*(타겟-나의 이미지 위치));
+	box.style.left=targetX-a*(targetX-parseFloat(box.style.left))+"px";
+	console.log(box.style.left);
+	setTimeout("move()",10);
+}
+
+</script>
+</head>
+<body onLoad="init()">
+	<div id="wrapper">
+		<div id="mask">
+			<div id="box" style="position:relative;left:0px;top:0px">	</div>
+		</div>
+		<a href="javascript:showImg(0)">●</a>
+		<a href="javascript:showImg(1)">●</a>
+		<a href="javascript:showImg(2)">●</a>
+		<a href="javascript:showImg(3)">●</a>
+		<a href="javascript:showImg(4)">●</a>
+		<a href="javascript:showImg(5)">●</a>
+		<a href="javascript:showImg(6)">●</a>
+	</div>
+</body>
+</html>

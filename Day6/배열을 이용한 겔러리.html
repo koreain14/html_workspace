@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>배열 이용 겔러리</title>
+<style>
+#outline{
+	background:white;
+	width: 500px;
+	height: 600px;
+	margin: auto;
+	border: 2px solid yellow;
+
+}
+
+#left{
+	width:80px;
+	height:80px;
+	transform: rotate(180deg);
+	
+}
+
+#right{
+	width:80px;
+	height:80px;
+
+}
+
+#pic{
+	width:500px;
+	height:500px;
+
+}
+#bottom{
+	width:490px;
+	height: 90px;
+	background: lightyellow;
+	Text-align: center;
+}
+
+</style>
+<script>
+//배열선언!!
+var photo=new Array();
+var n=0;
+
+photo[0]="../images/alone.jpg";
+photo[1]="../images/cuty.jpg";
+photo[2]="../images/curious.jpg";
+photo[3]="../images/sleepy.jpg";
+photo[4]="../images/sad.jpg";
+photo[5]="../images/smile.jpg";
+photo[6]="../images/white.jpg";
+photo[7]="../images/gold.jpg";
+photo[8]="../images/haha.jpg";
+photo[9]="../images/serious.jpg";
+
+function forward(){
+	n++;
+	if(n<10){
+		document.getElementById("pic").src=photo[n];
+} else if(n>=10){
+	alert("사진이 끝났습니다!!");
+	}
+}
+
+function back(){
+	n-=1;
+		document.getElementById("pic").src=photo[n];
+}
+
+</script>
+</head>
+<body>
+
+<div id="outline" >
+		<img src="../images/alone.jpg" id="pic">
+	<div id="bottom">
+		<img src="../images/bt.png" id="left" onClick="back()" >
+		<img src="../images/bt.png" id="right" onClick="forward()">
+	</div>
+</div>
+
+</body>
+</html>

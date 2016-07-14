@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>총알 발사하기!!_총알의 틀을 만들자!!</title>
+
+<style>
+body{
+	margin:0;
+
+}
+#stage{
+	width:100%;
+	height:800px;
+	background: Yellow;
+
+}
+
+</style>
+<script>
+var stage;
+
+function init(){
+	stage=document.getElementById("stage");
+
+	//거푸집에서 총알 한개를 생성!!
+	/*for(i=0;i<=1000;i++){
+	var b= new Bullet(i*50);
+	b.init();
+	} */
+}
+
+
+/*
+↓↓↓↓ 아래의 코드는 지금 당장 사용할 총알 자체가 아닌, 장차 총알을 생성해낼 틀이다!!  ↓↓↓↓
+*/
+
+var Bullet=function(posY){
+	/*총알을 정의한다!*/
+
+	// 객체의 특징에 대한 값을 담고 있다고하여, 속성이라고 한다.
+	// property라고 표기한다!!
+
+	this.span; // span을 정의하는 것!!
+	this.x=100;
+	this.y=posY;
+
+	// 객체 안에 들어있는 함수는 method 메서드라 한다!!
+	//method(방법): 객체의 동작 방식을 결정하는 로직이 들어있기 때문에 method라고 부름!!
+
+	this. init=function(){
+		this.span=document.createElement("span");//"span"은 태그명!!
+		this.span.innerText="●"; // Tag와 Tag사이에 글씨를 넣을 때는 innerTag!
+		this.span.style.color="red";
+		this.span.style.position="absolute";
+		this.span.style.left=this.x+"px";
+		this.span.style.top=this.y+"px"; // 호출하는 자가 바꾸기 위해서 매개변수로 가자!!
+
+		stage.appendChild(this.span);
+
+	// ↑↑↑ 여기까지는 span을 설정한 것↑↑↑ 무조건 수행하면 안되는 영역이여서 함수로 감싼다!!
+
+	this.move();
+	}
+
+	this.move=function(){
+			var me=this;
+			this.x+=10;
+			this.span.style.left=this.x+"px";
+			setTimeout(function(){
+				me.move();
+			},100);
+	}
+}
+
+
+</script>
+</head>
+<body onLoad="init()" >
+<div id="stage">
+
+</div>
+</body>
+</html>

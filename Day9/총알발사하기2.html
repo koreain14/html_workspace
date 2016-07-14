@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>총알 발사하기!!_총알의 틀을 만들자!!_프로그램으로 이벤트 걸기!!</title>
+
+<style>
+body{
+	margin:0;
+
+}
+#stage{
+	width:100%;
+	height:800px;
+	background: Yellow;
+
+}
+
+</style>
+<!-- ↓↓↓↓ script태그를 다시 만들어서 불러온다. 다른 것을 첨부해서는 안된다!!↓↓↓↓ -->
+<script src="../lib/Bullet.js"></script>
+<script>
+var st;
+
+function init(){
+	st=document.getElementById("stage");
+
+	// 프로그램에서 이벤트 핸들러를 적용할 때...
+	// event.keyCode
+	window.addEventListener("keydown",function(){
+		if(event.keyCode==32){
+			var b=new Bullet(st,400); 
+			b.init(); // b가 소유한 init() method를 호출
+		}
+	});
+
+	//거푸집에서 총알 한개를 생성!!
+	/*for(i=0;i<=1000;i++){
+	var b= new Bullet(i*50);
+	b.init();
+	} */
+}
+
+
+
+
+</script>
+</head>
+<body onLoad="init()" >
+<div id="stage">
+
+</div>
+</body>
+</html>

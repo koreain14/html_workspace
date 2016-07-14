@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>1000층에 5호수(이중 for문)</title>
+<script>
+
+var f=prompt("층수를 입력하세요!");
+// 층수를 결정하는 것은 for문의  횟수!!
+var a=prompt("호수를 입력하세요!");
+var b=prompt("건물두께를 입력하세요");
+var wid=prompt("건물의 가로폭을 입력하세요");
+
+document.write("<table border=\""+b+"px\" width=\""+wid+"px\">");
+for(var j=1;j<=f;j++){
+	document.write("<tr> ");
+	for(var i=1;i<=a;i++){
+		document.write("<td >"+(j+"0"+i)+"호</td>");
+	}
+	document.write("</tr>");
+}
+document.write("</table>");
+</script>
+</head>
+<body>
+</body>
+</html>

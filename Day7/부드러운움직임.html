@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>부드러운 움직임</title>
+<style>
+#sonic{
+	position:absolute;
+	left:100px;
+	top:200px;
+}
+
+div{
+	width: 100%;
+	height: 800px;
+	border: 1pt solid black;
+}
+
+</style>
+<script>
+var sonic;
+var targetX; // 소닉 목표도달지점!!
+var targetY;
+var a=0.9;
+
+function init(){
+	sonic=document.getElementById("sonic");
+}
+
+// 목표지점 - 비율계수*(목표지점-나의위치)
+function move(){
+	// alert(parseInt(sonic.style.left));
+	sonic.style.left=targetX - a*(targetX- parseInt(sonic.style.left))+"px";
+	sonic.style.top=targetY - a*(targetY- parseInt(sonic.style.top))+"px";
+	
+	setTimeout("move()",45);
+	
+}
+
+
+</script>
+</head>
+<body onLoad="init()">
+	<div onMouseDown="move()">
+	<img src="../images/sonic.png" width="100px" id="sonic" onMouseOver="move()" style="position:absolute;left:0px;top:200px;">
+	</div>
+</body>
+</html>

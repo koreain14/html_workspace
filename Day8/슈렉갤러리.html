@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>슈렉갤러리</title>
+<style>
+#box{
+	width: 3500px;
+	height: 340px;
+	position: relative;/*바깥쪽 테두리를 기준으로 하는 것이 상대위치*/
+	left:0px;
+	top:0px;
+}
+#mask{
+	width:500px;
+	height: 340px;
+	overflow:hidden;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:200px;
+}
+
+#wrapper{
+	width:500px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:200px;
+	Text-align: center;
+	font-size: 12pt;
+}
+a{
+	text-decoration: none; /*밑 줄 없애기*/
+	color:#000000 /*색깔*/
+}
+/*a태그에 마우스 올려놓으면*/
+a:hover{
+	color: #00cc00;
+}
+
+</style>
+<script>
+var box;
+var img;
+
+
+function init(){
+	box=document.getElementById("box");
+
+	for(var i=0;i<8;i++){
+		img=document.createElement("img"); //프로그램으로 태그를 만드는 것!
+		img.src="../images/shurek/img"+i+".jpg";
+		box.appendChild(img);
+	}
+}
+
+function showImg(){
+	box.style.left=-500+"px";	
+}
+
+</script>
+</head>
+<body onLoad="init()">
+	<div id="wrapper">
+		<div id="mask">
+			<div id="box">	</div>
+		</div>
+		<a href="">●</a>
+		<a href="javascript:showImg()">●</a>
+		<a href="javascript:showImg()">●</a>
+		<a href="javascript:showImg()">●</a>
+		<a href="javascript:showImg()">●</a>
+		<a href="javascript:showImg()">●</a>
+		<a href="javascript:showImg()">●</a>
+	</div>
+</body>
+</html>

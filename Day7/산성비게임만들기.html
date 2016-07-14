@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>산성비게임만들기</title>
+<style>
+#wrapper{
+	width: 100%;
+	height: 700px;
+}
+
+#stage{
+	width: 100%;
+	border: 1px solid red;
+	background-image:url("../images/bg2.jpg");
+}
+
+#controller{
+	width: 100%;
+	height: 150px;
+	border: 1px solid black;
+	text-align:center;
+}
+
+#hp{
+	width: 150px;
+	height: 100px;
+	text-align:center;
+	float:left;
+}
+
+#info{
+	width: 460px;
+	height: 150px;
+	border: 1px solid black;
+	text-align:center;
+	float:left;
+}
+
+#keyword{
+	width: 250px;
+	height: 50px;
+	text-align:center;
+	background: #e1e1e1;
+	font-size: 25pt;
+
+}
+
+
+</style>
+<script>
+var hp;
+var stage;
+var floorArray=new Array(3);
+var word=[
+	"감자", "고구마", "망고", "사과","꿀",	"다시마",	"사이다",	"콜라",	"농구",	"축구"
+	];
+var wordArray=new Array(word.length);
+var step=10; // 몇 픽셀씩 내려오게 할지를 결정하는 변수
+var st; // setTimeout을 가리키는 전역변수!
+var keyword; // 단어 입력폼!!
+var score; // 점수 텍스트박스
+var jumsoo=0;
+var limit; // 단어들이 넘지 말아야할 top의 한계점
+
+function init(){
+	hp=document.getElementById("hp");
+	stage=document.getElementById("stage");
+	keyword=document.getElementById("keyword");
+	score=document.getElementById("score");
+
+	//현재 스테이지의 높이를 구해보자!!
+	limit=parseInt(stage.style.height);
+
+	createHP();
+	createTag();
+}
+// 표를 배열에 넣기!!
+
+function createHP(){
+		//문서가 로드되면 HP가 표현되는 테이블을 3*4개로 구성해보자!
+	var table=document.createElement("table");
+	table.style.border="2px solid red";
+
+	for(var i=0;i<3;i++){
+		var tr=document.createElement("tr");
+		var hoArray=new Array(4); 
+		for(var j=0;j<4;j++){
+			var td=document.createElement("td");
+			td.style.width=50+"px";
+			td.style.height=40+"px";
+			td.style.background="yellow";
+			tr.appendChild(td); // 나는 tr에 td를 자식으로 둘거야
+
+			hoArray[j]=td;
+		}
+		// 한줄이 완성되었으므로 floor에 담자
+		floorArray[i]=hoArray;
+
+		table.appendChild(tr); // 나는 테이블에 자식을 둘거야!!
+	}
+		// hp div에 table 추가!!
+	hp.appendChild(table);
+}
+
+// 게임이 시작되면, 단어들이 등장하되 점점내려오게!! top값이 증가하게(개발자라면^^)
+
+function createTag(){
+	// span 태그를 단어만큼 생성하여 stage에 부착하자!!
+	for(var i=0;i<word.length;i++){
+
+		//랜덤값 구하기: 0~-99 사이에서
+		var r= parseInt(Math.random()*100); // 0.xxxxx 난수 발생!
+		var span=document.createElement("span"); // 글씨를 마크업!! 제어하기 위해서!!
+		span.style.position="relative"; // 자기가 속해있는 영역이 기준!! 중첩을 허용하지 않기 때문에 글씨가 밀린다.
+		span.style.left=70*(i)+"px";
+		span.style.top=-r+"px"; // -50을 하는 이유는 단어가 보이지 않게 하기 위해서
+		span.innerText=word[i];
+		stage.appendChild(span);
+
+		//span 지역변수이기 때문에 추후 for 문이 다 돌아간 후에는 접근할 수 없다!!!
+		// 따라서 전역 배열에 담아 두어야한다.
+		wordArray[i]=span;
+	}
+}
+
+// 텍스트 내려오는 효과주기
+function drop(){
+	//step+=10;
+	for(var i=0;i<wordArray.length;i++){
+		wordArray[i].style.top = parseInt(wordArray[i].style.top)+step+"px";
+	}
+
+	//현재 내려오고 있는 단어가 limit를 넘어섰는지 조사하자!!
+	if(parseInt(wordArray[1].style.top) >=limit){
+
+		floorArray[0][0].style.background="#ffffff";
+	}
+
+	var level=document.getElementById("speed").value;
+	console.log("현재 레벨값은"+level)
+	st=setTimeout("drop()",level);
+}
+
+// 게임 시작!!
+function gameStart(){
+	drop();
+	keyword.focus();
+}
+
+//게임 잠시 중지
+function pause(){
+	clearTimeout(st); // 멈춤의 대상이 되는 setTimeout 인수로..
+}
+// 여러 키보드값 중 엔터키 값에만 반응을 보인다!
+function enter(){
+	if(event.keyCode==13){
+		// 현재 존재하는 단어마다 입력한 값과 비교를 한다!!
+		// 같으면? 단어 사라지고 점수 올리고!!
+		for(var i=0;1< word.length;i++){
+			if(wordArray[i].innerText==keyword.value){
+				wordArray[i].innerText="";
+				keyword.value=""; // 방금 입력한 텍스트 지우기!!
+
+				// 기존 점수보다 10점 올리기
+
+				jumsoo+=10;
+				score.value=jumsoo;
+				
+			}
+		}
+	}
+}
+
+</script>
+</head>
+<body onLoad="init()">
+	<div id="wrapper">
+		<div id="stage" style="height:550px"></div>
+		<div id="controller">
+			<div id="info">
+			<br>
+				<select id="speed">
+					<option value="1500">1단계</option>
+					<option value="1200">2단계</option>
+					<option value="900">3단계</option>
+					<option value="500">4단계</option>
+					<option value="250">5단계</option>
+				</select>
+				<input type="button" value="start" onClick="gameStart()">
+				<input type="button" value="pause" onClick="pause()">
+				<input type="text" value="o" size="5" id="score"> <!--size=숫자, 숫자만큼 글씨를 입력할 수 있는 크기-->점<br><br>
+				<input type="text" id="keyword" onKeyUp="enter()">
+			</div>
+			<div id="hp"></div>
+					
+		</div>
+	</div>
+</body>
+</html>

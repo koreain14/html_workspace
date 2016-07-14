@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>화살날리기</title>
+
+<style>
+#bg{
+	width:100%;
+	height:800px;
+	background: yellow;
+
+}
+</style>
+<script>
+var bg;
+var span;
+var x=0;
+
+// 문서가 로드되면, span을 생성하여 그 사이에 특수문자 화살표 넣고, 날리세요!!
+function init(){
+	bg=document.getElementById("bg");
+
+	span=document.createElement("span");
+	span.innerText="→";
+	span.style.fontSize="50pt";
+	span.style.position="relative";
+	
+	bg.appendChild(span);
+	move();
+
+	span2=document.createElement("span");
+	span2.innerText="▶";
+	span2.style.fontSize="50pt";
+	span2.style.position="relative";
+	span2.style.top=200+"px";
+	
+	bg.appendChild(span2);
+	move2();
+
+}
+
+function move(){
+	x+=10;
+	span.style.left=x+"px";
+	setTimeout("move()",100);
+}
+
+function move2(){
+	x+=10;
+	span2.style.left=x+"px";
+	setTimeout("move2()",70);
+}
+
+	
+</script>
+</head>
+<body onLoad="init()">
+	<div id="bg"></div>
+</body>
+</html>

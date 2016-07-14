@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+<style>
+
+/* 이 영역은 html이 아닌, Cascading Style Sheet라는 CSS라 불리는 디자인 영역이다. 이 기술을 이용하면, html의 문서로서의
+한계를 극복 할 수 있다. 제한없는 글씨 크기, 제한없는 컨텐츠의 위치, 색상...등등... 디자인과 관련된 거의 모든 것!! */
+
+#pic{
+position:absolute;
+left:200px;
+top:500px;
+transform:rotate(10deg);
+transform:scale(1,1);
+}
+
+</style>
+
+<script>
+var x=200; 
+var y=500; 
+var z=0; 
+var a=1;
+//버튼을 누르면 물체를 우측으로 움직이자
+
+function moveRight(){
+	// 문서내에 pic이라 불리는 이미지의 스타일 속성중 left 값 변경!!
+	document.getElementById("pic").style.left=x+"px";
+	x=x+10
+}
+	// 좌측이동(left값의 감소)
+function moveLeft(){
+	document.getElementById("pic").style.left=x+"px";
+	x=x-10
+}
+
+function moveUp(){
+	document.getElementById("pic").style.top=y+"px";
+	y=y-10
+}
+
+function moveDown(){
+	document.getElementById("pic").style.top=y+"px";
+	y=y+10
+}
+
+//스타일시트를 제어하여, 물체를 돌려보자!!
+
+function rotation(){
+	z=z+10;
+	document.getElementById("pic").style.transform="rotate("+z+"deg)";
+
+}
+
+function growing(){
+	document.getElementById("pic").style.transform="scale("+a+")";
+	a=a+1;
+
+}
+
+
+
+
+</script>
+
+
+</head>
+<body>
+	<input type="button" value="좌측이동" onClick="moveLeft()">
+	<input type="button" value="우측이동" onClick="moveRight()">
+    <input type="button" value="위쪽" onClick="moveUp()">
+	<input type="button" value="아래쪽" onClick="moveDown()">
+	<input type="button" value="풍차돌리기" onClick="rotation()">
+	<input type="button" value="커져라" onClick="growing()">
+
+
+
+<img src="../images/6.jpg" id="pic" width="100">
+
+</body>
+</html>

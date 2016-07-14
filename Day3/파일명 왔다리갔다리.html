@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>왔다리 갔다리</title>
+<style>
+#chu{
+	position:absolute;
+	left:0px;
+	top:200px;
+}
+</style>
+
+<script>
+var x=0;
+
+//이미지의 위치가 500위치에 도달하면 다시 돌아오되,
+//0에 도달하면 다시 반대로 증가(왔다리 갔다리 하게 만들어라)
+
+
+
+function move(){
+	// 문서내에 chu라 불리는 이미지의 스타일 위치속성을 x축 증가시킴
+	x+=10;
+	console.log(x);
+	if(x<=500){
+	document.getElementById("chu").style.left=x+"px";}
+	else if(x>500 && x<=1000){
+		document.getElementById("chu").style.left=1000-x+"px";}
+	else{ x=0;
+	
+}	
+}
+ // 함수를 정의하는 정의부
+
+/*if(x<=500){
+	move(); // 함수를 호출하는 것.
+
+}else{
+	document.getElementById("chu").style.left;
+}
+}*/
+
+
+</script>
+</head>
+<body>
+<input type="button" value="버튼" onClick="move()">
+<br>
+<img src="../images/6.jpg" width="100px" id="chu">
+
+</body>
+</html>

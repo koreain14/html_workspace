@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>우주선움직이기</title>
+<style>
+#stage{
+	width:100%;
+	height:800px;
+}
+</style>
+<script>
+var stage;
+var s;
+	window.addEventListener("load",function(){
+	stage=document.getElementById("stage");
+
+	s=new ship(200,200,100,100,stage);
+	s.init();
+
+	});
+
+var ship=function(x,y,w,h,a){
+	this.img;
+	this.posX=x;
+	this.posY=y;
+	this.width=w;
+	this.height=h;
+	this.stage=a
+
+	this.init=function(){
+		this.img=document.createElement("img");
+		this.img.src="../images/mairo.png";
+		this.img.style.position="absolute";
+		this.img.style.left=x;
+		this.img.style.top=y;
+		this.img.style.width=w+"px";
+		this.img.style.height=h+"px";
+
+		this.stage.appendChild(this.img);
+
+	}
+
+	this.move=function(){
+
+	}
+}
+
+</script>
+</head>
+<body>
+<div id="stage"></div>
+</body>
+</html>

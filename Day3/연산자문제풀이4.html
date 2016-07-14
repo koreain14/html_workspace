@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>연산자문제풀이4번</title>
+<script>
+/*4가 나오는 원인은? 증감 연산자 중 ++,-- 연산자는 피연산자의 앞, 뒤 모두에 사용가능한데,
+특히 뒤에 올 경우 우선순위가 후 순위가 된다!! */
+
+var b=3;
+b++
+document.write(b++); // 프로그램은 실행 타이밍에 뭔가를 변형할 수 있다. 후 순위 연산을 했기 때문에 육안으로는 4이지만 메모리에는 5
+</script>
+</head>
+<body>
+
+</body>
+</html>
+

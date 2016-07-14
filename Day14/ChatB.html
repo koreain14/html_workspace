@@ -5,16 +5,28 @@
 <title>ChatB</title>
 <link rel="stylesheet" type="text/css" href="/css/chat.css" />
 <script>
-function openClient(){
-	// 채팅을 할 두 클라이언트 창 띄우기!!
+var area;
 
+function init(){
+	area=document.getElementById("area");
 }
+
+function enter(){
+	// ChatB의 textarea의 값에 대화내용을 추가하자!
+	var key=event.keyCode;
+	if(key==13){
+		opener.chatB.area2.value+=opener.chatB.text_input.value+"\n";
+		opener.chatA.area.value+=opener.chatB.text_input.value+"\n";
+		opener.chatB.text_input.value="";
+	}
+}
+
 
 </script>
 </head>
-<body>
+<body onLoad="init()">
 <div id="wrapper">
-	<textarea>점심먹었니?</textarea>
+	<textarea id="area"></textarea>
 	<input type="text">
 </div>
 </body>

@@ -1,0 +1,22 @@
+body{
+	margin:0px;
+}
+#wrapper{
+	width:300px;
+	height:400px;
+}
+textarea{
+	width:95%;
+	height:330px;
+	background:#00ccff;
+	color:yellow;
+	font-weight:bold;
+	font-size:12pt;
+}	
+input{
+	width:95%;
+	height:30px;
+	background:#FFFFFF;
+	border:2px solid #0066ff;
+	font-size:13pt;
+}

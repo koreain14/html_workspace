@@ -1,0 +1,105 @@
+C:\mariadb-10.1.14-winx64\bin>mysql -h localhost -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 2
+Server version: 10.1.14-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2016, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases:
+    ->
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to us
+ ':' at line 1
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| iot                |
+| mysql              |
+| performance_schema |
+| test               |
++--------------------+
+5 rows in set (0.02 sec)
+
+MariaDB [(none)]> use iot
+Database changed
+MariaDB [iot]> show tables
+    -> ;
++---------------+
+| Tables_in_iot |
++---------------+
+| animal        |
+| dept          |
+| emp           |
+| member        |
+| test          |
++---------------+
+5 rows in set (0.00 sec)
+
+MariaDB [iot]> create table student(
+    -> id varchar(20),
+    -> pwd varchar(20),
+    -> name varchar(20)
+    -> ) default charset utf8;
+Query OK, 0 rows affected (0.20 sec)
+
+MariaDB [iot]> insert into student(id,pwd,name) values('batman','1234','부르스');
+Query OK, 1 row affected (0.04 sec)
+
+MariaDB [iot]> select *from student;
++--------+------+--------+
+| id     | pwd  | name   |
++--------+------+--------+
+| batman | 1234 | 부르스 |
++--------+------+--------+
+1 row in set (0.00 sec)
+
+MariaDB [iot]> update student set pwd='1111' where id='batman';
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [iot]> select *from student;
++--------+------+--------+
+| id     | pwd  | name   |
++--------+------+--------+
+| batman | 1111 | 부르스 |
++--------+------+--------+
+1 row in set (0.00 sec)
+
+MariaDB [iot]> delete from student where id='batman';
+Query OK, 1 row affected (0.03 sec)
+
+MariaDB [iot]> select *from student;
+Empty set (0.00 sec)
+
+MariaDB [iot]> select *from student;
++----------+------+-------+
+| id       | pwd  | name  |
++----------+------+-------+
+| superman | 1234 | Clark |
++----------+------+-------+
+1 row in set (0.00 sec)
+
+MariaDB [iot]> select * from student;
++----------+------+-------+
+| id       | pwd  | name  |
++----------+------+-------+
+| superman | 1234 | Clark |
++----------+------+-------+
+1 row in set (0.00 sec)
+
+MariaDB [iot]>
+
+
+
+
+
+
+
+
+
+
